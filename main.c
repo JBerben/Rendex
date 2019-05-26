@@ -290,6 +290,24 @@ void loading_bar() {
  */
 void render_misc(bool initialize) {
     
+    // Handles for the different VRAM sections.
+    uint32_t *vl = gray_lightVRAM();
+	uint32_t *vd = gray_darkVRAM();
+
+    gray_start();
+
+    grect(1, 1, 30, 30, color_dark);
+    grect(60, 32, 90, 62, color_light);
+
+    gupdate();
+
+    while (getkey_opt(getkey_none, 125) != KEY_EXIT) {
+        // Idle...
+    }
+
+    gclear();
+    gray_stop();
+
     in_menu = true;
 }
 

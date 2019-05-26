@@ -92,6 +92,12 @@ Archive member included to satisfy reference by file (symbol)
                               build.fx/game.o (_dupdate)
 /usr/share/fxsdk/libgint.a(display_dline.c.o)
                               build.fx/main.o (_dline)
+/usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+                              build.fx/main.o (_gray_start)
+/usr/share/fxsdk/libgint.a(gray_gclear.c.o)
+                              build.fx/main.o (_gclear)
+/usr/share/fxsdk/libgint.a(gray_grect.c.o)
+                              build.fx/main.o (_grect)
 /usr/share/fxsdk/libgint.a(init_crt0.c.o)
                               (_start)
 /usr/share/fxsdk/libgint.a(init_util.c.o)
@@ -142,8 +148,6 @@ Archive member included to satisfy reference by file (symbol)
                               /usr/share/fxsdk/libgint.a(keyboard_getkey.c.o) (_pollevent)
 /usr/share/fxsdk/libgint.a(events_event_push.c.o)
                               /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o) (_event_push)
-/usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
-                              /usr/share/fxsdk/libgint.a(core_init_quit.c.o) (_gray_runs)
 /usr/share/fxsdk/libgint.a(keyboard_key_char.c.o)
                               /usr/share/fxsdk/libgint.a(keyboard_key_type.c.o) (_key_char)
 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7305.c.o)
@@ -187,7 +191,7 @@ Archive member included to satisfy reference by file (symbol)
 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_movmem.o)
                               build.fx/mathutils.o (___movmem)
 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_sdivsi3.o)
-                              /usr/share/fxsdk/libgint.a(clock_clock.c.o) (___sdivsi3)
+                              build.fx/renderer.o (___sdivsi3)
 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_udivdi3.o)
                               /usr/share/fxsdk/libgint.a(clock_clock.c.o) (___udivdi3)
 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_addsub_df.o)
@@ -267,7 +271,7 @@ LOAD /usr/share/fxsdk/libgint.a
 LOAD /usr/share/fxsdk/libc.a
 LOAD /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a
 
-.text           0x0000000000300200     0xd490
+.text           0x0000000000300200     0xdee8
  *(.pretext.entry)
  .pretext.entry
                 0x0000000000300200      0x1c0 /usr/share/fxsdk/libgint.a(init_crt0.c.o)
@@ -275,13 +279,13 @@ LOAD /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a
  *(.pretext)
                 0x00000000003003c0                _bctors = ABSOLUTE (.)
  *(.ctors)
- .ctors         0x00000000003003c0        0x4 /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
- .ctors         0x00000000003003c4        0x4 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .ctors         0x00000000003003c0        0x4 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .ctors         0x00000000003003c4        0x4 /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
                 0x00000000003003c8                _ectors = ABSOLUTE (.)
                 0x00000000003003c8                _bdtors = ABSOLUTE (.)
  *(.dtors)
- .dtors         0x00000000003003c8        0x4 /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
- .dtors         0x00000000003003cc        0x4 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .dtors         0x00000000003003c8        0x4 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .dtors         0x00000000003003cc        0x4 /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
                 0x00000000003003d0                _edtors = ABSOLUTE (.)
  *(.text)
  .text          0x00000000003003d0     0x30fc build.fx/mathutils.o
@@ -326,439 +330,446 @@ LOAD /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a
                 0x0000000000302b00                _m4x4_lookat
                 0x0000000000302e98                _m4x4_speedyinverse
                 0x0000000000303200                _vector3_isect_plane
- .text          0x00000000003034cc     0x1e9c build.fx/renderer.o
+ .text          0x00000000003034cc     0x2668 build.fx/renderer.o
                 0x00000000003034cc                _get_colour
                 0x0000000000304020                _draw_line
-                0x0000000000304534                _initializeRenderer
-                0x0000000000304664                _renderMesh
- .text          0x0000000000305368      0x88c build.fx/game.o
-                0x000000000030590e                _initializeGame
-                0x0000000000305964                _updateGame
- .text          0x0000000000305bf4      0x85c build.fx/main.o
-                0x0000000000305bf4                _main
-                0x0000000000305d40                _draw_menu
-                0x0000000000305e00                _menu_tooltip
-                0x0000000000305ef0                _menu_select
-                0x0000000000305f5c                _reset_kboard_rr
-                0x0000000000305f80                _render_cube
-                0x0000000000305ff4                _load_file
-                0x0000000000306314                _loading_bar
-                0x0000000000306428                _render_misc
- .text          0x0000000000306450       0xb0 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_cos.o)
-                0x0000000000306450                _cos
- .text          0x0000000000306500        0xc /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_fabs.o)
-                0x0000000000306500                _fabs
- .text          0x000000000030650c       0xb4 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_sin.o)
-                0x000000000030650c                _sin
- .text          0x00000000003065c0       0x6c /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_tan.o)
-                0x00000000003065c0                _tan
- .text          0x000000000030662c      0x444 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-e_rem_pio2.o)
-                0x000000000030662c                ___ieee754_rem_pio2
- .text          0x0000000000306a70      0x1c8 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-k_cos.o)
-                0x0000000000306a70                ___kernel_cos
- .text          0x0000000000306c38      0x7f8 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-k_rem_pio2.o)
-                0x0000000000306c38                ___kernel_rem_pio2
- .text          0x0000000000307430      0x1a4 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-k_sin.o)
-                0x0000000000307430                ___kernel_sin
- .text          0x00000000003075d4      0x3f4 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-k_tan.o)
-                0x00000000003075d4                ___kernel_tan
- .text          0x00000000003079c8      0x144 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_floor.o)
-                0x00000000003079c8                _floor
- .text          0x0000000000307b0c      0x138 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_scalbn.o)
-                0x0000000000307b0c                _scalbn
- .text          0x0000000000307c44      0x198 /usr/share/fxsdk/libgint.a(bopti_dimage.c.o)
-                0x0000000000307c44                _dimage_part
-                0x0000000000307dbc                _dimage
- .text          0x0000000000307ddc      0x348 /usr/share/fxsdk/libgint.a(clock_clock.c.o)
-                0x0000000000307eb0                _clock_setting
-                0x0000000000307f48                _clock_config
-                0x0000000000307f64                _sleep
-                0x0000000000307f6a                _sleep_ms
-                0x0000000000307fb4                _sleep_us
-                0x000000000030800c                _clock_measure
-                0x000000000030810c                _clock_measure_end
- .text          0x0000000000308124      0x230 /usr/share/fxsdk/libgint.a(core_modules.c.o)
-                0x0000000000308124                _mod_init
- .text          0x0000000000308354       0x68 /usr/share/fxsdk/libgint.a(core_mpu.c.o)
-                0x0000000000308354                _getMPU
- .text          0x00000000003083bc       0x80 /usr/share/fxsdk/libgint.a(display_getMasks.c.o)
-                0x00000000003083bc                _getMasks
- .text          0x000000000030843c      0x10c /usr/share/fxsdk/libgint.a(display_drect.c.o)
-                0x000000000030843c                _drect
- .text          0x0000000000308548       0x2c /usr/share/fxsdk/libgint.a(display_display_vram.c.o)
-                0x0000000000308548                _display_getLocalVRAM
-                0x0000000000308554                _display_getCurrentVRAM
-                0x0000000000308560                _display_useVRAM
- .text          0x0000000000308574       0x64 /usr/share/fxsdk/libgint.a(display_adjustRectangle.c.o)
-                0x0000000000308574                _adjustRectangle
- .text          0x00000000003085d8       0x40 /usr/share/fxsdk/libgint.a(display_dclear.c.o)
-                0x00000000003085d8                _dclear
- .text          0x0000000000308618       0x58 /usr/share/fxsdk/libgint.a(display_dpixel.c.o)
-                0x0000000000308618                _dpixel
- .text          0x0000000000308670       0x14 /usr/share/fxsdk/libgint.a(display_dupdate.c.o)
-                0x0000000000308670                _dupdate
- .text          0x0000000000308684      0x214 /usr/share/fxsdk/libgint.a(display_dline.c.o)
-                0x0000000000308684                _dline
- .text          0x0000000000308898       0x64 /usr/share/fxsdk/libgint.a(init_crt0.c.o)
-                0x0000000000308898                _abort
-                0x00000000003088bc                _exit
-                0x00000000003088d4                _atexit
- .text          0x00000000003088fc      0x1ac /usr/share/fxsdk/libgint.a(init_util.c.o)
-                0x00000000003088fc                _init_version
-                0x000000000030899c                _init_stage
-                0x00000000003089cc                _init_halt
-                0x00000000003089e0                _print_dec
-                0x0000000000308a48                _print_hex
- .text          0x0000000000308aa8      0x1cc /usr/share/fxsdk/libgint.a(keyboard_getkey.c.o)
-                0x0000000000308aa8                _getkey_opt
-                0x0000000000308c68                _getkey
- .text          0x0000000000308c74       0x38 /usr/share/fxsdk/libgint.a(keyboard_key_type.c.o)
-                0x0000000000308c74                _key_type
- .text          0x0000000000308cac      0x184 /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
-                0x0000000000308cac                _keyboard_interrupt
-                0x0000000000308de8                _keyboard_setAnalysisDelay
-                0x0000000000308e04                _keyboard_setRepeatRate
-                0x0000000000308e24                _keyboard_stateBuffer
- .text          0x0000000000308e30       0x20 /usr/share/fxsdk/libgint.a(mmu_pseudoTLBInit.c.o)
-                0x0000000000308e30                _mmu_pseudoTLBInit
- .text          0x0000000000308e50      0x1c4 /usr/share/fxsdk/libgint.a(rtc_rtc_callback.c.o)
-                0x0000000000308e98                _rtc_cb_add
-                0x0000000000308f00                _rtc_cb_end
-                0x0000000000308f38                _rtc_cb_edit
-                0x0000000000308f7c                _rtc_cb_interrupt
- .text          0x0000000000309014       0x7c /usr/share/fxsdk/libgint.a(screen_screen_display.c.o)
-                0x0000000000309014                _screen_display
- .text          0x0000000000309090       0x6c /usr/share/fxsdk/libgint.a(screen_screen_backlight.c.o)
-                0x0000000000309090                _screen_setBacklight
-                0x00000000003090cc                _screen_toggleBacklight
- .text          0x00000000003090fc       0x40 /usr/share/fxsdk/libgint.a(tales_dprint.c.o)
-                0x00000000003090fc                _dprint
- .text          0x000000000030913c       0x10 /usr/share/fxsdk/libgint.a(tales_dtext.c.o)
-                0x000000000030913c                _dtext
- .text          0x000000000030914c       0x1c /usr/share/fxsdk/libgint.a(tales_tales_configuration.c.o)
-                0x000000000030914c                _text_configure
- .text          0x0000000000309168      0x194 /usr/share/fxsdk/libgint.a(timer_common_api.c.o)
-                0x0000000000309168                _timer_attach
-                0x0000000000309174                _timer_start
-                0x00000000003091c4                _timer_stop
-                0x0000000000309224                _timer_callback_event
-                0x00000000003092a8                _timer_interrupt
- .text          0x00000000003092fc      0x2dc /usr/share/fxsdk/libgint.a(timer_virtual_timers.c.o)
-                0x00000000003093ac                _timer_create
-                0x00000000003093fc                _vtimer_updateOne
-                0x0000000000309434                _vtimer_updateAll
-                0x00000000003094b0                _timer_reload
-                0x00000000003094d0                _timer_destroy
-                0x00000000003094e0                _vtimer_interrupt
- .text          0x00000000003095d8       0x9c /usr/share/fxsdk/libgint.a(timer_hardware_timers.c.o)
-                0x00000000003095d8                _htimer_setup
-                0x000000000030965c                _htimer_reload
- .text          0x0000000000309674      0x45c /usr/share/fxsdk/libgint.a(bopti_bopti_internals.c.o)
-                0x0000000000309674                _bopti_end_get1
-                0x000000000030967e                _bopti_end_get2
-                0x0000000000309688                _bopti_op_mono
-                0x00000000003096c8                _bopti_op_gray
-                0x0000000000309740                _bopti_grid_a32
-                0x00000000003097b2                _bopti_grid
-                0x00000000003098a0                _bopti_end_nover
-                0x000000000030991c                _bopti_end
-                0x00000000003099b8                _bopti
-                0x0000000000309a5c                _getStructure
- .text          0x0000000000309ad0      0x19c /usr/share/fxsdk/libgint.a(core_init_quit.c.o)
-                0x0000000000309b40                _gint_init
-                0x0000000000309bd8                _gint_quit
-                0x0000000000309bf0                _gint_switch
- .text          0x0000000000309c6c      0x178 /usr/share/fxsdk/libgint.a(core_gint.c.o)
-                0x0000000000309c6c                _gint_install
-                0x0000000000309c84                _gint_uninstall
-                0x0000000000309ca0                _gint_reg
-                0x0000000000309cc0                _gint_invoke
- .text          0x0000000000309de4      0x1fc /usr/share/fxsdk/libgint.a(core_gint_sh7305.c.o)
-                0x0000000000309de4                _gint_reg_7305
-                0x0000000000309dfc                _gint_save_7305
-                0x0000000000309eb0                _gint_lock_and_setup_7305
-                0x0000000000309f1c                _gint_restore_and_unlock_7305
- .text          0x0000000000309fe0       0xf0 /usr/share/fxsdk/libgint.a(core_syscalls.s.o)
-                0x0000000000309fe0                ___malloc
-                0x0000000000309fec                ___free
-                0x0000000000309ff8                ___realloc
-                0x000000000030a004                ___get_os_version
-                0x000000000030a010                ___system_menu
-                0x000000000030a074                _BFile_Remove
-                0x000000000030a080                _BFile_Create
-                0x000000000030a08c                _BFile_Open
-                0x000000000030a098                _BFile_Close
-                0x000000000030a0a4                _BFile_Write
-                0x000000000030a0b0                _BFile_Read
- .text          0x000000000030a0d0       0x40 /usr/share/fxsdk/libgint.a(core_gint_vbr.s.o)
-                0x000000000030a0d0                _gint_getvbr
-                0x000000000030a0d4                _gint_setvbr
- .text          0x000000000030a110       0x90 /usr/share/fxsdk/libgint.a(events_event_get.c.o)
-                0x000000000030a110                _pollevent
-                0x000000000030a16c                _waitevent
- .text          0x000000000030a1a0       0x5c /usr/share/fxsdk/libgint.a(events_event_push.c.o)
-                0x000000000030a1a0                _event_push
- .text          0x000000000030a1fc      0x1a8 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
-                0x000000000030a1fc                _gray_interrupt
-                0x000000000030a244                _gray_start
-                0x000000000030a2e0                _gray_stop
-                0x000000000030a314                _gray_setDelays
-                0x000000000030a320                _gray_runs
-                0x000000000030a32c                _gray_lightVRAM
-                0x000000000030a344                _gray_darkVRAM
-                0x000000000030a360                _gray_currentVRAM
-                0x000000000030a378                _gray_getDelays
-                0x000000000030a394                _gupdate
- .text          0x000000000030a3a4       0x58 /usr/share/fxsdk/libgint.a(keyboard_key_char.c.o)
-                0x000000000030a3a4                _key_char
- .text          0x000000000030a3fc      0x1a8 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7305.c.o)
-                0x000000000030a440                _keyboard_updateState_7305
- .text          0x000000000030a5a4      0x114 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7705.c.o)
-                0x000000000030a5b0                _keyboard_updateState_7705
- .text          0x000000000030a6b8       0x26 /usr/share/fxsdk/libgint.a(keyboard_key_id.c.o)
-                0x000000000030a6b8                _key_id
- *fill*         0x000000000030a6de        0x2 
- .text          0x000000000030a6e0      0x3dc /usr/share/fxsdk/libgint.a(tales_tales_internals.c.o)
-                0x000000000030a6e0                _getCharacterIndex
-                0x000000000030a7f8                _operate_mono
-                0x000000000030a8d4                _update
-                0x000000000030a98a                _render
- .text          0x000000000030aabc        0x0 /usr/share/fxsdk/libgint.a(core_vbr_space.c.o)
- .text          0x000000000030aabc       0x18 /usr/share/fxsdk/libgint.a(core_interrupts.c.o)
-                0x000000000030aabc                _inth_timer_underflow
-                0x000000000030aac8                _inth_rtc_periodic
- .text          0x000000000030aad4      0x428 /usr/share/fxsdk/libgint.a(core_gint_sh7705.c.o)
-                0x000000000030aad4                _gint_reg_7705
-                0x000000000030aaec                _gint_save_7705
-                0x000000000030ac4c                _gint_lock_and_setup_7705
-                0x000000000030ad98                _gint_restore_and_unlock_7705
- .text          0x000000000030aefc      0x27c /usr/share/fxsdk/libgint.a(core_exceptions.c.o)
-                0x000000000030b074                _exch_address_error
-                0x000000000030b094                _exch_tlb_protection_violation
-                0x000000000030b0b4                _exch_tlb_invalid
-                0x000000000030b0d4                _exch_illegal_instruction
-                0x000000000030b0f0                _exch_illegal_slot
-                0x000000000030b10c                _exch_user_break
-                0x000000000030b124                _exch_initial_page_write
-                0x000000000030b13c                _exch_trap
-                0x000000000030b140                _exch_dma_address
-                0x000000000030b158                _exch_tlb_miss
- .text          0x000000000030b178       0x6c /usr/share/fxsdk/libgint.a(core_interrupt_maps_7705.c.o)
-                0x000000000030b178                _gint_map_7705
- .text          0x000000000030b1e4       0x20 /usr/share/fxsdk/libgint.a(rtc_rtc_interrupt.c.o)
-                0x000000000030b1e4                _rtc_periodic_interrupt
- .text          0x000000000030b204       0x40 /usr/share/fxsdk/libgint.a(core_interrupt_maps_7305.c.o)
-                0x000000000030b204                _gint_map_7305
- .text          0x000000000030b244        0x0 /usr/share/fxsdk/libc.a(ctype_ctype_classes.c.o)
- .text          0x000000000030b244        0xe /usr/share/fxsdk/libc.a(math_math_qdiv.c.o)
-                0x000000000030b244                _qdiv
- .text          0x000000000030b252       0x4e /usr/share/fxsdk/libc.a(setjmp_setjmp.s.o)
-                0x000000000030b252                _setjmp
-                0x000000000030b278                _longjmp
- .text          0x000000000030b2a0      0x708 /usr/share/fxsdk/libc.a(stdio_stdio_format.c.o)
-                0x000000000030b42c                ___printf
- .text          0x000000000030b9a8       0x14 /usr/share/fxsdk/libc.a(stdlib_free.c.o)
-                0x000000000030b9a8                _free
- .text          0x000000000030b9bc       0x10 /usr/share/fxsdk/libc.a(string_strlen.c.o)
-                0x000000000030b9bc                _strlen
- .text          0x000000000030b9cc       0x76 /usr/share/fxsdk/libc.a(string_memset.c.o)
-                0x000000000030b9cc                _memset
- .text          0x000000000030ba42       0x14 /usr/share/fxsdk/libc.a(string_strchr.c.o)
-                0x000000000030ba42                _strchr
- *fill*         0x000000000030ba56        0x2 
- .text          0x000000000030ba58       0x78 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_movmem.o)
-                0x000000000030ba58                ___movstr
-                0x000000000030ba58                ___movmem
-                0x000000000030ba8c                ___movmemSI64
-                0x000000000030ba8c                ___movstrSI64
-                0x000000000030ba90                ___movstrSI60
-                0x000000000030ba90                ___movmemSI60
-                0x000000000030ba94                ___movmemSI56
-                0x000000000030ba94                ___movstrSI56
-                0x000000000030ba98                ___movstrSI52
-                0x000000000030ba98                ___movmemSI52
-                0x000000000030ba9c                ___movstrSI48
-                0x000000000030ba9c                ___movmemSI48
-                0x000000000030baa0                ___movstrSI44
-                0x000000000030baa0                ___movmemSI44
-                0x000000000030baa4                ___movstrSI40
-                0x000000000030baa4                ___movmemSI40
-                0x000000000030baa8                ___movstrSI36
-                0x000000000030baa8                ___movmemSI36
-                0x000000000030baac                ___movmemSI32
-                0x000000000030baac                ___movstrSI32
-                0x000000000030bab0                ___movmemSI28
-                0x000000000030bab0                ___movstrSI28
-                0x000000000030bab4                ___movstrSI24
-                0x000000000030bab4                ___movmemSI24
-                0x000000000030bab8                ___movmemSI20
-                0x000000000030bab8                ___movstrSI20
-                0x000000000030babc                ___movstrSI16
-                0x000000000030babc                ___movmemSI16
-                0x000000000030bac0                ___movmemSI12
-                0x000000000030bac0                ___movstrSI12
-                0x000000000030bac4                ___movmemSI8
-                0x000000000030bac4                ___movstrSI8
-                0x000000000030bac8                ___movmemSI4
-                0x000000000030bac8                ___movstrSI4
- .text          0x000000000030bad0       0xa0 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_sdivsi3.o)
-                0x000000000030bad0                ___sdivsi3
- .text          0x000000000030bb70      0x1ec /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_udivdi3.o)
-                0x000000000030bb70                ___udivdi3
- .text          0x000000000030bd5c      0x330 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_addsub_df.o)
-                0x000000000030bfe8                ___adddf3
-                0x000000000030c038                ___subdf3
- .text          0x000000000030c08c      0x208 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_mul_df.o)
-                0x000000000030c08c                ___muldf3
- .text          0x000000000030c294      0x130 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_div_df.o)
-                0x000000000030c294                ___divdf3
- .text          0x000000000030c3c4       0x58 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_eq_df.o)
-                0x000000000030c3c4                ___eqdf2
- .text          0x000000000030c41c       0x58 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_ne_df.o)
-                0x000000000030c41c                ___nedf2
- .text          0x000000000030c474       0x50 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_gt_df.o)
-                0x000000000030c474                ___gtdf2
- .text          0x000000000030c4c4       0x50 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_ge_df.o)
-                0x000000000030c4c4                ___gedf2
- .text          0x000000000030c514       0x58 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_lt_df.o)
-                0x000000000030c514                ___ltdf2
- .text          0x000000000030c56c       0x58 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_le_df.o)
-                0x000000000030c56c                ___ledf2
- .text          0x000000000030c5c4       0x98 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_si_to_df.o)
-                0x000000000030c5c4                ___floatsidf
- .text          0x000000000030c65c       0x94 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_df_to_si.o)
-                0x000000000030c65c                ___fixdfsi
- .text          0x000000000030c6f0        0x0 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_thenan_df.o)
- .text          0x000000000030c6f0       0x6c /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_udivsi3.o)
-                0x000000000030c712                ___udivsi3
- *fill*         0x000000000030c75c        0x4 
- .text          0x000000000030c760       0x60 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_udiv_qrnnd_16.o)
-                0x000000000030c760                ___udiv_qrnnd_16
- .text          0x000000000030c7c0        0x0 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_clz.o)
- .text          0x000000000030c7c0       0x58 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_clzsi2.o)
-                0x000000000030c7c0                ___clzsi2
- .text          0x000000000030c818      0x25c /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_pack_df.o)
-                0x000000000030c818                ___pack_d
- .text          0x000000000030ca74       0xcc /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_unpack_df.o)
-                0x000000000030ca74                ___unpack_d
- .text          0x000000000030cb40       0xc8 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_fpcmp_parts_df.o)
-                0x000000000030cb40                ___fpcmp_parts_d
+                0x00000000003043ac                _lcd_hline
+                0x000000000030449c                _fillTriangleslope
+                0x0000000000304d00                _initializeRenderer
+                0x0000000000304e30                _renderMesh
+ .text          0x0000000000305b34      0x88c build.fx/game.o
+                0x00000000003060da                _initializeGame
+                0x0000000000306130                _updateGame
+ .text          0x00000000003063c0      0x8ec build.fx/main.o
+                0x00000000003063c0                _main
+                0x000000000030650c                _draw_menu
+                0x00000000003065cc                _menu_tooltip
+                0x00000000003066bc                _menu_select
+                0x0000000000306728                _reset_kboard_rr
+                0x000000000030674c                _render_cube
+                0x00000000003067c0                _load_file
+                0x0000000000306ae0                _loading_bar
+                0x0000000000306bf4                _render_misc
+ .text          0x0000000000306cac       0xb0 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_cos.o)
+                0x0000000000306cac                _cos
+ .text          0x0000000000306d5c        0xc /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_fabs.o)
+                0x0000000000306d5c                _fabs
+ .text          0x0000000000306d68       0xb4 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_sin.o)
+                0x0000000000306d68                _sin
+ .text          0x0000000000306e1c       0x6c /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_tan.o)
+                0x0000000000306e1c                _tan
+ .text          0x0000000000306e88      0x444 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-e_rem_pio2.o)
+                0x0000000000306e88                ___ieee754_rem_pio2
+ .text          0x00000000003072cc      0x1c8 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-k_cos.o)
+                0x00000000003072cc                ___kernel_cos
+ .text          0x0000000000307494      0x7f8 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-k_rem_pio2.o)
+                0x0000000000307494                ___kernel_rem_pio2
+ .text          0x0000000000307c8c      0x1a4 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-k_sin.o)
+                0x0000000000307c8c                ___kernel_sin
+ .text          0x0000000000307e30      0x3f4 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-k_tan.o)
+                0x0000000000307e30                ___kernel_tan
+ .text          0x0000000000308224      0x144 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_floor.o)
+                0x0000000000308224                _floor
+ .text          0x0000000000308368      0x138 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-s_scalbn.o)
+                0x0000000000308368                _scalbn
+ .text          0x00000000003084a0      0x198 /usr/share/fxsdk/libgint.a(bopti_dimage.c.o)
+                0x00000000003084a0                _dimage_part
+                0x0000000000308618                _dimage
+ .text          0x0000000000308638      0x348 /usr/share/fxsdk/libgint.a(clock_clock.c.o)
+                0x000000000030870c                _clock_setting
+                0x00000000003087a4                _clock_config
+                0x00000000003087c0                _sleep
+                0x00000000003087c6                _sleep_ms
+                0x0000000000308810                _sleep_us
+                0x0000000000308868                _clock_measure
+                0x0000000000308968                _clock_measure_end
+ .text          0x0000000000308980      0x230 /usr/share/fxsdk/libgint.a(core_modules.c.o)
+                0x0000000000308980                _mod_init
+ .text          0x0000000000308bb0       0x68 /usr/share/fxsdk/libgint.a(core_mpu.c.o)
+                0x0000000000308bb0                _getMPU
+ .text          0x0000000000308c18       0x80 /usr/share/fxsdk/libgint.a(display_getMasks.c.o)
+                0x0000000000308c18                _getMasks
+ .text          0x0000000000308c98      0x10c /usr/share/fxsdk/libgint.a(display_drect.c.o)
+                0x0000000000308c98                _drect
+ .text          0x0000000000308da4       0x2c /usr/share/fxsdk/libgint.a(display_display_vram.c.o)
+                0x0000000000308da4                _display_getLocalVRAM
+                0x0000000000308db0                _display_getCurrentVRAM
+                0x0000000000308dbc                _display_useVRAM
+ .text          0x0000000000308dd0       0x64 /usr/share/fxsdk/libgint.a(display_adjustRectangle.c.o)
+                0x0000000000308dd0                _adjustRectangle
+ .text          0x0000000000308e34       0x40 /usr/share/fxsdk/libgint.a(display_dclear.c.o)
+                0x0000000000308e34                _dclear
+ .text          0x0000000000308e74       0x58 /usr/share/fxsdk/libgint.a(display_dpixel.c.o)
+                0x0000000000308e74                _dpixel
+ .text          0x0000000000308ecc       0x14 /usr/share/fxsdk/libgint.a(display_dupdate.c.o)
+                0x0000000000308ecc                _dupdate
+ .text          0x0000000000308ee0      0x214 /usr/share/fxsdk/libgint.a(display_dline.c.o)
+                0x0000000000308ee0                _dline
+ .text          0x00000000003090f4      0x1a8 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+                0x00000000003090f4                _gray_interrupt
+                0x000000000030913c                _gray_start
+                0x00000000003091d8                _gray_stop
+                0x000000000030920c                _gray_setDelays
+                0x0000000000309218                _gray_runs
+                0x0000000000309224                _gray_lightVRAM
+                0x000000000030923c                _gray_darkVRAM
+                0x0000000000309258                _gray_currentVRAM
+                0x0000000000309270                _gray_getDelays
+                0x000000000030928c                _gupdate
+ .text          0x000000000030929c       0x58 /usr/share/fxsdk/libgint.a(gray_gclear.c.o)
+                0x000000000030929c                _gclear
+ .text          0x00000000003092f4      0x1a0 /usr/share/fxsdk/libgint.a(gray_grect.c.o)
+                0x00000000003092f4                _grect
+ .text          0x0000000000309494       0x64 /usr/share/fxsdk/libgint.a(init_crt0.c.o)
+                0x0000000000309494                _abort
+                0x00000000003094b8                _exit
+                0x00000000003094d0                _atexit
+ .text          0x00000000003094f8      0x1ac /usr/share/fxsdk/libgint.a(init_util.c.o)
+                0x00000000003094f8                _init_version
+                0x0000000000309598                _init_stage
+                0x00000000003095c8                _init_halt
+                0x00000000003095dc                _print_dec
+                0x0000000000309644                _print_hex
+ .text          0x00000000003096a4      0x1cc /usr/share/fxsdk/libgint.a(keyboard_getkey.c.o)
+                0x00000000003096a4                _getkey_opt
+                0x0000000000309864                _getkey
+ .text          0x0000000000309870       0x38 /usr/share/fxsdk/libgint.a(keyboard_key_type.c.o)
+                0x0000000000309870                _key_type
+ .text          0x00000000003098a8      0x184 /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
+                0x00000000003098a8                _keyboard_interrupt
+                0x00000000003099e4                _keyboard_setAnalysisDelay
+                0x0000000000309a00                _keyboard_setRepeatRate
+                0x0000000000309a20                _keyboard_stateBuffer
+ .text          0x0000000000309a2c       0x20 /usr/share/fxsdk/libgint.a(mmu_pseudoTLBInit.c.o)
+                0x0000000000309a2c                _mmu_pseudoTLBInit
+ .text          0x0000000000309a4c      0x1c4 /usr/share/fxsdk/libgint.a(rtc_rtc_callback.c.o)
+                0x0000000000309a94                _rtc_cb_add
+                0x0000000000309afc                _rtc_cb_end
+                0x0000000000309b34                _rtc_cb_edit
+                0x0000000000309b78                _rtc_cb_interrupt
+ .text          0x0000000000309c10       0x7c /usr/share/fxsdk/libgint.a(screen_screen_display.c.o)
+                0x0000000000309c10                _screen_display
+ .text          0x0000000000309c8c       0x6c /usr/share/fxsdk/libgint.a(screen_screen_backlight.c.o)
+                0x0000000000309c8c                _screen_setBacklight
+                0x0000000000309cc8                _screen_toggleBacklight
+ .text          0x0000000000309cf8       0x40 /usr/share/fxsdk/libgint.a(tales_dprint.c.o)
+                0x0000000000309cf8                _dprint
+ .text          0x0000000000309d38       0x10 /usr/share/fxsdk/libgint.a(tales_dtext.c.o)
+                0x0000000000309d38                _dtext
+ .text          0x0000000000309d48       0x1c /usr/share/fxsdk/libgint.a(tales_tales_configuration.c.o)
+                0x0000000000309d48                _text_configure
+ .text          0x0000000000309d64      0x194 /usr/share/fxsdk/libgint.a(timer_common_api.c.o)
+                0x0000000000309d64                _timer_attach
+                0x0000000000309d70                _timer_start
+                0x0000000000309dc0                _timer_stop
+                0x0000000000309e20                _timer_callback_event
+                0x0000000000309ea4                _timer_interrupt
+ .text          0x0000000000309ef8      0x2dc /usr/share/fxsdk/libgint.a(timer_virtual_timers.c.o)
+                0x0000000000309fa8                _timer_create
+                0x0000000000309ff8                _vtimer_updateOne
+                0x000000000030a030                _vtimer_updateAll
+                0x000000000030a0ac                _timer_reload
+                0x000000000030a0cc                _timer_destroy
+                0x000000000030a0dc                _vtimer_interrupt
+ .text          0x000000000030a1d4       0x9c /usr/share/fxsdk/libgint.a(timer_hardware_timers.c.o)
+                0x000000000030a1d4                _htimer_setup
+                0x000000000030a258                _htimer_reload
+ .text          0x000000000030a270      0x45c /usr/share/fxsdk/libgint.a(bopti_bopti_internals.c.o)
+                0x000000000030a270                _bopti_end_get1
+                0x000000000030a27a                _bopti_end_get2
+                0x000000000030a284                _bopti_op_mono
+                0x000000000030a2c4                _bopti_op_gray
+                0x000000000030a33c                _bopti_grid_a32
+                0x000000000030a3ae                _bopti_grid
+                0x000000000030a49c                _bopti_end_nover
+                0x000000000030a518                _bopti_end
+                0x000000000030a5b4                _bopti
+                0x000000000030a658                _getStructure
+ .text          0x000000000030a6cc      0x19c /usr/share/fxsdk/libgint.a(core_init_quit.c.o)
+                0x000000000030a73c                _gint_init
+                0x000000000030a7d4                _gint_quit
+                0x000000000030a7ec                _gint_switch
+ .text          0x000000000030a868      0x178 /usr/share/fxsdk/libgint.a(core_gint.c.o)
+                0x000000000030a868                _gint_install
+                0x000000000030a880                _gint_uninstall
+                0x000000000030a89c                _gint_reg
+                0x000000000030a8bc                _gint_invoke
+ .text          0x000000000030a9e0      0x1fc /usr/share/fxsdk/libgint.a(core_gint_sh7305.c.o)
+                0x000000000030a9e0                _gint_reg_7305
+                0x000000000030a9f8                _gint_save_7305
+                0x000000000030aaac                _gint_lock_and_setup_7305
+                0x000000000030ab18                _gint_restore_and_unlock_7305
+ *fill*         0x000000000030abdc        0x4 
+ .text          0x000000000030abe0       0xf0 /usr/share/fxsdk/libgint.a(core_syscalls.s.o)
+                0x000000000030abe0                ___malloc
+                0x000000000030abec                ___free
+                0x000000000030abf8                ___realloc
+                0x000000000030ac04                ___get_os_version
+                0x000000000030ac10                ___system_menu
+                0x000000000030ac74                _BFile_Remove
+                0x000000000030ac80                _BFile_Create
+                0x000000000030ac8c                _BFile_Open
+                0x000000000030ac98                _BFile_Close
+                0x000000000030aca4                _BFile_Write
+                0x000000000030acb0                _BFile_Read
+ .text          0x000000000030acd0       0x40 /usr/share/fxsdk/libgint.a(core_gint_vbr.s.o)
+                0x000000000030acd0                _gint_getvbr
+                0x000000000030acd4                _gint_setvbr
+ .text          0x000000000030ad10       0x90 /usr/share/fxsdk/libgint.a(events_event_get.c.o)
+                0x000000000030ad10                _pollevent
+                0x000000000030ad6c                _waitevent
+ .text          0x000000000030ada0       0x5c /usr/share/fxsdk/libgint.a(events_event_push.c.o)
+                0x000000000030ada0                _event_push
+ .text          0x000000000030adfc       0x58 /usr/share/fxsdk/libgint.a(keyboard_key_char.c.o)
+                0x000000000030adfc                _key_char
+ .text          0x000000000030ae54      0x1a8 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7305.c.o)
+                0x000000000030ae98                _keyboard_updateState_7305
+ .text          0x000000000030affc      0x114 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7705.c.o)
+                0x000000000030b008                _keyboard_updateState_7705
+ .text          0x000000000030b110       0x26 /usr/share/fxsdk/libgint.a(keyboard_key_id.c.o)
+                0x000000000030b110                _key_id
+ *fill*         0x000000000030b136        0x2 
+ .text          0x000000000030b138      0x3dc /usr/share/fxsdk/libgint.a(tales_tales_internals.c.o)
+                0x000000000030b138                _getCharacterIndex
+                0x000000000030b250                _operate_mono
+                0x000000000030b32c                _update
+                0x000000000030b3e2                _render
+ .text          0x000000000030b514        0x0 /usr/share/fxsdk/libgint.a(core_vbr_space.c.o)
+ .text          0x000000000030b514       0x18 /usr/share/fxsdk/libgint.a(core_interrupts.c.o)
+                0x000000000030b514                _inth_timer_underflow
+                0x000000000030b520                _inth_rtc_periodic
+ .text          0x000000000030b52c      0x428 /usr/share/fxsdk/libgint.a(core_gint_sh7705.c.o)
+                0x000000000030b52c                _gint_reg_7705
+                0x000000000030b544                _gint_save_7705
+                0x000000000030b6a4                _gint_lock_and_setup_7705
+                0x000000000030b7f0                _gint_restore_and_unlock_7705
+ .text          0x000000000030b954      0x27c /usr/share/fxsdk/libgint.a(core_exceptions.c.o)
+                0x000000000030bacc                _exch_address_error
+                0x000000000030baec                _exch_tlb_protection_violation
+                0x000000000030bb0c                _exch_tlb_invalid
+                0x000000000030bb2c                _exch_illegal_instruction
+                0x000000000030bb48                _exch_illegal_slot
+                0x000000000030bb64                _exch_user_break
+                0x000000000030bb7c                _exch_initial_page_write
+                0x000000000030bb94                _exch_trap
+                0x000000000030bb98                _exch_dma_address
+                0x000000000030bbb0                _exch_tlb_miss
+ .text          0x000000000030bbd0       0x6c /usr/share/fxsdk/libgint.a(core_interrupt_maps_7705.c.o)
+                0x000000000030bbd0                _gint_map_7705
+ .text          0x000000000030bc3c       0x20 /usr/share/fxsdk/libgint.a(rtc_rtc_interrupt.c.o)
+                0x000000000030bc3c                _rtc_periodic_interrupt
+ .text          0x000000000030bc5c       0x40 /usr/share/fxsdk/libgint.a(core_interrupt_maps_7305.c.o)
+                0x000000000030bc5c                _gint_map_7305
+ .text          0x000000000030bc9c        0x0 /usr/share/fxsdk/libc.a(ctype_ctype_classes.c.o)
+ .text          0x000000000030bc9c        0xe /usr/share/fxsdk/libc.a(math_math_qdiv.c.o)
+                0x000000000030bc9c                _qdiv
+ .text          0x000000000030bcaa       0x4e /usr/share/fxsdk/libc.a(setjmp_setjmp.s.o)
+                0x000000000030bcaa                _setjmp
+                0x000000000030bcd0                _longjmp
+ .text          0x000000000030bcf8      0x708 /usr/share/fxsdk/libc.a(stdio_stdio_format.c.o)
+                0x000000000030be84                ___printf
+ .text          0x000000000030c400       0x14 /usr/share/fxsdk/libc.a(stdlib_free.c.o)
+                0x000000000030c400                _free
+ .text          0x000000000030c414       0x10 /usr/share/fxsdk/libc.a(string_strlen.c.o)
+                0x000000000030c414                _strlen
+ .text          0x000000000030c424       0x76 /usr/share/fxsdk/libc.a(string_memset.c.o)
+                0x000000000030c424                _memset
+ .text          0x000000000030c49a       0x14 /usr/share/fxsdk/libc.a(string_strchr.c.o)
+                0x000000000030c49a                _strchr
+ *fill*         0x000000000030c4ae        0x2 
+ .text          0x000000000030c4b0       0x78 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_movmem.o)
+                0x000000000030c4b0                ___movstr
+                0x000000000030c4b0                ___movmem
+                0x000000000030c4e4                ___movmemSI64
+                0x000000000030c4e4                ___movstrSI64
+                0x000000000030c4e8                ___movstrSI60
+                0x000000000030c4e8                ___movmemSI60
+                0x000000000030c4ec                ___movmemSI56
+                0x000000000030c4ec                ___movstrSI56
+                0x000000000030c4f0                ___movstrSI52
+                0x000000000030c4f0                ___movmemSI52
+                0x000000000030c4f4                ___movstrSI48
+                0x000000000030c4f4                ___movmemSI48
+                0x000000000030c4f8                ___movstrSI44
+                0x000000000030c4f8                ___movmemSI44
+                0x000000000030c4fc                ___movstrSI40
+                0x000000000030c4fc                ___movmemSI40
+                0x000000000030c500                ___movstrSI36
+                0x000000000030c500                ___movmemSI36
+                0x000000000030c504                ___movmemSI32
+                0x000000000030c504                ___movstrSI32
+                0x000000000030c508                ___movmemSI28
+                0x000000000030c508                ___movstrSI28
+                0x000000000030c50c                ___movstrSI24
+                0x000000000030c50c                ___movmemSI24
+                0x000000000030c510                ___movmemSI20
+                0x000000000030c510                ___movstrSI20
+                0x000000000030c514                ___movstrSI16
+                0x000000000030c514                ___movmemSI16
+                0x000000000030c518                ___movmemSI12
+                0x000000000030c518                ___movstrSI12
+                0x000000000030c51c                ___movmemSI8
+                0x000000000030c51c                ___movstrSI8
+                0x000000000030c520                ___movmemSI4
+                0x000000000030c520                ___movstrSI4
+ .text          0x000000000030c528       0xa0 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_sdivsi3.o)
+                0x000000000030c528                ___sdivsi3
+ .text          0x000000000030c5c8      0x1ec /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_udivdi3.o)
+                0x000000000030c5c8                ___udivdi3
+ .text          0x000000000030c7b4      0x330 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_addsub_df.o)
+                0x000000000030ca40                ___adddf3
+                0x000000000030ca90                ___subdf3
+ .text          0x000000000030cae4      0x208 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_mul_df.o)
+                0x000000000030cae4                ___muldf3
+ .text          0x000000000030ccec      0x130 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_div_df.o)
+                0x000000000030ccec                ___divdf3
+ .text          0x000000000030ce1c       0x58 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_eq_df.o)
+                0x000000000030ce1c                ___eqdf2
+ .text          0x000000000030ce74       0x58 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_ne_df.o)
+                0x000000000030ce74                ___nedf2
+ .text          0x000000000030cecc       0x50 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_gt_df.o)
+                0x000000000030cecc                ___gtdf2
+ .text          0x000000000030cf1c       0x50 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_ge_df.o)
+                0x000000000030cf1c                ___gedf2
+ .text          0x000000000030cf6c       0x58 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_lt_df.o)
+                0x000000000030cf6c                ___ltdf2
+ .text          0x000000000030cfc4       0x58 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_le_df.o)
+                0x000000000030cfc4                ___ledf2
+ .text          0x000000000030d01c       0x98 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_si_to_df.o)
+                0x000000000030d01c                ___floatsidf
+ .text          0x000000000030d0b4       0x94 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_df_to_si.o)
+                0x000000000030d0b4                ___fixdfsi
+ .text          0x000000000030d148        0x0 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_thenan_df.o)
+ .text          0x000000000030d148       0x6c /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_udivsi3.o)
+                0x000000000030d16a                ___udivsi3
+ *fill*         0x000000000030d1b4        0x4 
+ .text          0x000000000030d1b8       0x60 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_udiv_qrnnd_16.o)
+                0x000000000030d1b8                ___udiv_qrnnd_16
+ .text          0x000000000030d218        0x0 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_clz.o)
+ .text          0x000000000030d218       0x58 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_clzsi2.o)
+                0x000000000030d218                ___clzsi2
+ .text          0x000000000030d270      0x25c /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_pack_df.o)
+                0x000000000030d270                ___pack_d
+ .text          0x000000000030d4cc       0xcc /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_unpack_df.o)
+                0x000000000030d4cc                ___unpack_d
+ .text          0x000000000030d598       0xc8 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_fpcmp_parts_df.o)
+                0x000000000030d598                ___fpcmp_parts_d
  *(.text.*)
- .text.startup  0x000000000030cc08       0x50 /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
-                0x000000000030cc08                _keyboard_init
- .text.exit     0x000000000030cc58       0x20 /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
-                0x000000000030cc58                _keyboard_quit
- .text.startup  0x000000000030cc78       0x34 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
- .text.exit     0x000000000030ccac       0x28 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .text.startup  0x000000000030d660       0x34 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .text.exit     0x000000000030d694       0x28 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .text.startup  0x000000000030d6bc       0x50 /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
+                0x000000000030d6bc                _keyboard_init
+ .text.exit     0x000000000030d70c       0x20 /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
+                0x000000000030d70c                _keyboard_quit
  *(C P)
- P              0x000000000030ccd4       0xbe /usr/share/fxsdk/libfx.a(memcpy.robj)
-                0x000000000030ccd4                _memcpy
- *fill*         0x000000000030cd92        0x2 
- P              0x000000000030cd94       0x10 /usr/share/fxsdk/libfx.a(_calloc.robj)
-                0x000000000030cd94                _calloc
- P              0x000000000030cda4       0x10 /usr/share/fxsdk/libfx.a(_malloc.robj)
-                0x000000000030cda4                _malloc
- P              0x000000000030cdb4      0x730 /usr/share/fxsdk/libfx.a(filebios.robj)
-                0x000000000030cdb4                _BfileMCS_GetFileHandle
-                0x000000000030ce22                _Bfile_CloseFile
-                0x000000000030ce90                _BfileMCS_HandleCheck
-                0x000000000030ced0                _MCSFile_InitAll
-                0x000000000030cf0c                _Bfile_ReadFile
-                0x000000000030cff4                _Bfile_WriteFile
-                0x000000000030d0d2                _Bfile_SeekFile
-                0x000000000030d13c                _Bfile_OpenMainMemory
-                0x000000000030d17e                _Bfile_OpenFile
-                0x000000000030d184                _Bfile_GetMediaFree
-                0x000000000030d250                _Bfile_GetFileSize
-                0x000000000030d2ca                _Bfile_CreateMainMemory
-                0x000000000030d34e                _Bfile_CreateFile
-                0x000000000030d364                _Bfile_CreateDirectory
-                0x000000000030d36c                _Bfile_RenameMainMemory
-                0x000000000030d3d6                _Bfile_DeleteMainMemory
-                0x000000000030d440                _Bfile_DeleteFile
-                0x000000000030d480                _Bfile_DeleteDirectory
- C              0x000000000030d4e4       0x24 /usr/share/fxsdk/libfx.a(filebios.robj)
- P              0x000000000030d508       0x38 /usr/share/fxsdk/libfx.a(__s_mvn.robj)
-                0x000000000030d508                __slow_mvn
- P              0x000000000030d540       0x3e /usr/share/fxsdk/libfx.a(strncmp.robj)
-                0x000000000030d540                _strncmp
- *fill*         0x000000000030d57e        0x2 
- P              0x000000000030d580       0x10 /usr/share/fxsdk/libfx.a(_Bfile_CloseFile.robj)
-                0x000000000030d580                _Bfile_CloseFile_OS
- P              0x000000000030d590       0x10 /usr/share/fxsdk/libfx.a(_Bfile_CreateEntry.robj)
-                0x000000000030d590                _Bfile_CreateEntry
- P              0x000000000030d5a0       0x10 /usr/share/fxsdk/libfx.a(_Bfile_DeleteEntry.robj)
-                0x000000000030d5a0                _Bfile_DeleteEntry
- P              0x000000000030d5b0       0x10 /usr/share/fxsdk/libfx.a(_Bfile_GetFileSize.robj)
-                0x000000000030d5b0                _Bfile_GetFileSize_OS
- P              0x000000000030d5c0       0x10 /usr/share/fxsdk/libfx.a(_Bfile_GetMediaFree.robj)
-                0x000000000030d5c0                _Bfile_GetMediaFree_OS
- P              0x000000000030d5d0       0x10 /usr/share/fxsdk/libfx.a(_Bfile_OpenFile.robj)
-                0x000000000030d5d0                _Bfile_OpenFile_OS
- P              0x000000000030d5e0       0x10 /usr/share/fxsdk/libfx.a(_Bfile_ReadFile.robj)
-                0x000000000030d5e0                _Bfile_ReadFile_OS
- P              0x000000000030d5f0       0x10 /usr/share/fxsdk/libfx.a(_Bfile_SeekFile.robj)
-                0x000000000030d5f0                _Bfile_SeekFile_OS
- P              0x000000000030d600       0x10 /usr/share/fxsdk/libfx.a(_Bfile_WriteFile.robj)
-                0x000000000030d600                _Bfile_WriteFile_OS
- P              0x000000000030d610       0x10 /usr/share/fxsdk/libfx.a(_BMCSRenameVariable.robj)
-                0x000000000030d610                _BMCSRenameVariable
- P              0x000000000030d620       0x10 /usr/share/fxsdk/libfx.a(_GetAppName.robj)
-                0x000000000030d620                _GetAppName
- P              0x000000000030d630       0x10 /usr/share/fxsdk/libfx.a(_MCSDelVar2.robj)
-                0x000000000030d630                _MCSDelVar2
- P              0x000000000030d640       0x10 /usr/share/fxsdk/libfx.a(_MCSGetCapa.robj)
-                0x000000000030d640                _MCSGetCapa
- P              0x000000000030d650       0x10 /usr/share/fxsdk/libfx.a(_MCSGetData1.robj)
-                0x000000000030d650                _MCSGetData1
- P              0x000000000030d660       0x10 /usr/share/fxsdk/libfx.a(_MCSGetDlen2.robj)
-                0x000000000030d660                _MCSGetDlen2
- P              0x000000000030d670       0x10 /usr/share/fxsdk/libfx.a(_MCSOvwDat2.robj)
-                0x000000000030d670                _MCSOvwDat2
- P              0x000000000030d680       0x10 /usr/share/fxsdk/libfx.a(_MCSPutVar2.robj)
-                0x000000000030d680                _MCSPutVar2
+ P              0x000000000030d72c       0xbe /usr/share/fxsdk/libfx.a(memcpy.robj)
+                0x000000000030d72c                _memcpy
+ *fill*         0x000000000030d7ea        0x2 
+ P              0x000000000030d7ec       0x10 /usr/share/fxsdk/libfx.a(_calloc.robj)
+                0x000000000030d7ec                _calloc
+ P              0x000000000030d7fc       0x10 /usr/share/fxsdk/libfx.a(_malloc.robj)
+                0x000000000030d7fc                _malloc
+ P              0x000000000030d80c      0x730 /usr/share/fxsdk/libfx.a(filebios.robj)
+                0x000000000030d80c                _BfileMCS_GetFileHandle
+                0x000000000030d87a                _Bfile_CloseFile
+                0x000000000030d8e8                _BfileMCS_HandleCheck
+                0x000000000030d928                _MCSFile_InitAll
+                0x000000000030d964                _Bfile_ReadFile
+                0x000000000030da4c                _Bfile_WriteFile
+                0x000000000030db2a                _Bfile_SeekFile
+                0x000000000030db94                _Bfile_OpenMainMemory
+                0x000000000030dbd6                _Bfile_OpenFile
+                0x000000000030dbdc                _Bfile_GetMediaFree
+                0x000000000030dca8                _Bfile_GetFileSize
+                0x000000000030dd22                _Bfile_CreateMainMemory
+                0x000000000030dda6                _Bfile_CreateFile
+                0x000000000030ddbc                _Bfile_CreateDirectory
+                0x000000000030ddc4                _Bfile_RenameMainMemory
+                0x000000000030de2e                _Bfile_DeleteMainMemory
+                0x000000000030de98                _Bfile_DeleteFile
+                0x000000000030ded8                _Bfile_DeleteDirectory
+ C              0x000000000030df3c       0x24 /usr/share/fxsdk/libfx.a(filebios.robj)
+ P              0x000000000030df60       0x38 /usr/share/fxsdk/libfx.a(__s_mvn.robj)
+                0x000000000030df60                __slow_mvn
+ P              0x000000000030df98       0x3e /usr/share/fxsdk/libfx.a(strncmp.robj)
+                0x000000000030df98                _strncmp
+ *fill*         0x000000000030dfd6        0x2 
+ P              0x000000000030dfd8       0x10 /usr/share/fxsdk/libfx.a(_Bfile_CloseFile.robj)
+                0x000000000030dfd8                _Bfile_CloseFile_OS
+ P              0x000000000030dfe8       0x10 /usr/share/fxsdk/libfx.a(_Bfile_CreateEntry.robj)
+                0x000000000030dfe8                _Bfile_CreateEntry
+ P              0x000000000030dff8       0x10 /usr/share/fxsdk/libfx.a(_Bfile_DeleteEntry.robj)
+                0x000000000030dff8                _Bfile_DeleteEntry
+ P              0x000000000030e008       0x10 /usr/share/fxsdk/libfx.a(_Bfile_GetFileSize.robj)
+                0x000000000030e008                _Bfile_GetFileSize_OS
+ P              0x000000000030e018       0x10 /usr/share/fxsdk/libfx.a(_Bfile_GetMediaFree.robj)
+                0x000000000030e018                _Bfile_GetMediaFree_OS
+ P              0x000000000030e028       0x10 /usr/share/fxsdk/libfx.a(_Bfile_OpenFile.robj)
+                0x000000000030e028                _Bfile_OpenFile_OS
+ P              0x000000000030e038       0x10 /usr/share/fxsdk/libfx.a(_Bfile_ReadFile.robj)
+                0x000000000030e038                _Bfile_ReadFile_OS
+ P              0x000000000030e048       0x10 /usr/share/fxsdk/libfx.a(_Bfile_SeekFile.robj)
+                0x000000000030e048                _Bfile_SeekFile_OS
+ P              0x000000000030e058       0x10 /usr/share/fxsdk/libfx.a(_Bfile_WriteFile.robj)
+                0x000000000030e058                _Bfile_WriteFile_OS
+ P              0x000000000030e068       0x10 /usr/share/fxsdk/libfx.a(_BMCSRenameVariable.robj)
+                0x000000000030e068                _BMCSRenameVariable
+ P              0x000000000030e078       0x10 /usr/share/fxsdk/libfx.a(_GetAppName.robj)
+                0x000000000030e078                _GetAppName
+ P              0x000000000030e088       0x10 /usr/share/fxsdk/libfx.a(_MCSDelVar2.robj)
+                0x000000000030e088                _MCSDelVar2
+ P              0x000000000030e098       0x10 /usr/share/fxsdk/libfx.a(_MCSGetCapa.robj)
+                0x000000000030e098                _MCSGetCapa
+ P              0x000000000030e0a8       0x10 /usr/share/fxsdk/libfx.a(_MCSGetData1.robj)
+                0x000000000030e0a8                _MCSGetData1
+ P              0x000000000030e0b8       0x10 /usr/share/fxsdk/libfx.a(_MCSGetDlen2.robj)
+                0x000000000030e0b8                _MCSGetDlen2
+ P              0x000000000030e0c8       0x10 /usr/share/fxsdk/libfx.a(_MCSOvwDat2.robj)
+                0x000000000030e0c8                _MCSOvwDat2
+ P              0x000000000030e0d8       0x10 /usr/share/fxsdk/libfx.a(_MCSPutVar2.robj)
+                0x000000000030e0d8                _MCSPutVar2
 
-.rodata         0x000000000030d690      0xfbc
+.rodata         0x000000000030e0e8      0xfbc
  *(.rodata.fxconv)
  .rodata.fxconv
-                0x000000000030d690      0x370 build.fx/assets_font_island.bmp.o
-                0x000000000030d690                _assets_font_island
-                0x000000000030da00                _assets_font_island_end
+                0x000000000030e0e8      0x370 build.fx/assets_font_island.bmp.o
+                0x000000000030e0e8                _assets_font_island
+                0x000000000030e458                _assets_font_island_end
  .rodata.fxconv
-                0x000000000030da00      0x184 build.fx/assets_title.bmp.o
-                0x000000000030da00                _assets_title
-                0x000000000030db84                _assets_title_end
+                0x000000000030e458      0x184 build.fx/assets_title.bmp.o
+                0x000000000030e458                _assets_title
+                0x000000000030e5dc                _assets_title_end
  .rodata.fxconv
-                0x000000000030db84      0x444 /usr/share/fxsdk/libgint.a(display_font_system.bmp.o)
-                0x000000000030db84                _gint_font_system
-                0x000000000030dfc8                _gint_font_system_end
+                0x000000000030e5dc      0x444 /usr/share/fxsdk/libgint.a(display_font_system.bmp.o)
+                0x000000000030e5dc                _gint_font_system
+                0x000000000030ea20                _gint_font_system_end
  *(.rodata.paradox)
  *(.rodata)
- .rodata        0x000000000030dfc8      0x154 build.fx/main.o
- .rodata        0x000000000030e11c      0x188 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-e_rem_pio2.o)
- .rodata        0x000000000030e2a4       0x50 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-k_rem_pio2.o)
- .rodata        0x000000000030e2f4       0x1c /usr/share/fxsdk/libgint.a(rtc_rtc_callback.c.o)
- .rodata        0x000000000030e310       0x14 /usr/share/fxsdk/libgint.a(core_gint_sh7305.c.o)
- .rodata        0x000000000030e324       0x6e /usr/share/fxsdk/libgint.a(keyboard_key_char.c.o)
- *fill*         0x000000000030e392        0x2 
- .rodata        0x000000000030e394       0x14 /usr/share/fxsdk/libgint.a(core_gint_sh7705.c.o)
- .rodata        0x000000000030e3a8       0x44 /usr/share/fxsdk/libgint.a(core_interrupt_maps_7705.c.o)
- .rodata        0x000000000030e3ec       0x40 /usr/share/fxsdk/libgint.a(core_interrupt_maps_7305.c.o)
- .rodata        0x000000000030e42c       0x14 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_thenan_df.o)
-                0x000000000030e42c                ___thenan_df
- .rodata        0x000000000030e440      0x100 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_clz.o)
-                0x000000000030e440                ___clz_tab
-                0x000000000030e540                . = ALIGN (0x4)
+ .rodata        0x000000000030ea20      0x154 build.fx/main.o
+ .rodata        0x000000000030eb74      0x188 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-e_rem_pio2.o)
+ .rodata        0x000000000030ecfc       0x50 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/../../../../sh3eb-elf/lib/libm.a(lib_a-k_rem_pio2.o)
+ .rodata        0x000000000030ed4c       0x1c /usr/share/fxsdk/libgint.a(rtc_rtc_callback.c.o)
+ .rodata        0x000000000030ed68       0x14 /usr/share/fxsdk/libgint.a(core_gint_sh7305.c.o)
+ .rodata        0x000000000030ed7c       0x6e /usr/share/fxsdk/libgint.a(keyboard_key_char.c.o)
+ *fill*         0x000000000030edea        0x2 
+ .rodata        0x000000000030edec       0x14 /usr/share/fxsdk/libgint.a(core_gint_sh7705.c.o)
+ .rodata        0x000000000030ee00       0x44 /usr/share/fxsdk/libgint.a(core_interrupt_maps_7705.c.o)
+ .rodata        0x000000000030ee44       0x40 /usr/share/fxsdk/libgint.a(core_interrupt_maps_7305.c.o)
+ .rodata        0x000000000030ee84       0x14 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_thenan_df.o)
+                0x000000000030ee84                ___thenan_df
+ .rodata        0x000000000030ee98      0x100 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_clz.o)
+                0x000000000030ee98                ___clz_tab
+                0x000000000030ef98                . = ALIGN (0x4)
  *(.rodata.*)
  .rodata.str1.4
-                0x000000000030e540        0xe /usr/share/fxsdk/libgint.a(init_util.c.o)
- *fill*         0x000000000030e54e        0x2 
+                0x000000000030ef98        0xe /usr/share/fxsdk/libgint.a(init_util.c.o)
+ *fill*         0x000000000030efa6        0x2 
  .rodata.str1.4
-                0x000000000030e550       0xd9 /usr/share/fxsdk/libgint.a(core_exceptions.c.o)
- *fill*         0x000000000030e629        0x3 
+                0x000000000030efa8       0xd9 /usr/share/fxsdk/libgint.a(core_exceptions.c.o)
+ *fill*         0x000000000030f081        0x3 
  .rodata.str1.4
-                0x000000000030e62c       0x20 /usr/share/fxsdk/libc.a(stdio_stdio_format.c.o)
-                0x000000000030e64c                _romdata = ALIGN (0x4)
+                0x000000000030f084       0x20 /usr/share/fxsdk/libc.a(stdio_stdio_format.c.o)
+                0x000000000030f0a4                _romdata = ALIGN (0x4)
 
 .bss            0x0000000008100000      0x8c0
                 0x0000000008100000                _bbss = ABSOLUTE (.)
@@ -792,43 +803,45 @@ LOAD /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a
  .bss           0x00000000081000d4        0x0 /usr/share/fxsdk/libgint.a(display_dpixel.c.o)
  .bss           0x00000000081000d4        0x0 /usr/share/fxsdk/libgint.a(display_dupdate.c.o)
  .bss           0x00000000081000d4        0x0 /usr/share/fxsdk/libgint.a(display_dline.c.o)
- .bss           0x00000000081000d4       0x84 /usr/share/fxsdk/libgint.a(init_crt0.c.o)
- .bss           0x0000000008100158        0xe /usr/share/fxsdk/libgint.a(init_util.c.o)
- .bss           0x0000000008100166        0x0 /usr/share/fxsdk/libgint.a(keyboard_getkey.c.o)
- .bss           0x0000000008100166        0x0 /usr/share/fxsdk/libgint.a(keyboard_key_type.c.o)
- *fill*         0x0000000008100166        0x2 
- .bss           0x0000000008100168       0x1e /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
-                0x0000000008100168                _vtimer
-                0x000000000810016c                _last_time
-                0x0000000008100170                _last_repeats
-                0x0000000008100174                _last_key
-                0x0000000008100178                _interrupt_flag
-                0x000000000810017c                _keyboard_state
- .bss           0x0000000008100186        0x0 /usr/share/fxsdk/libgint.a(mmu_pseudoTLBInit.c.o)
- *fill*         0x0000000008100186        0x2 
- .bss           0x0000000008100188       0x58 /usr/share/fxsdk/libgint.a(rtc_rtc_callback.c.o)
-                0x0000000008100188                _cb_array
- .bss           0x00000000081001e0        0x0 /usr/share/fxsdk/libgint.a(screen_screen_display.c.o)
- .bss           0x00000000081001e0        0x0 /usr/share/fxsdk/libgint.a(screen_screen_backlight.c.o)
- .bss           0x00000000081001e0        0x0 /usr/share/fxsdk/libgint.a(tales_dprint.c.o)
- .bss           0x00000000081001e0        0x0 /usr/share/fxsdk/libgint.a(tales_dtext.c.o)
- .bss           0x00000000081001e0        0x0 /usr/share/fxsdk/libgint.a(tales_tales_configuration.c.o)
- .bss           0x00000000081001e0        0x0 /usr/share/fxsdk/libgint.a(timer_common_api.c.o)
- .bss           0x00000000081001e0      0x148 /usr/share/fxsdk/libgint.a(timer_virtual_timers.c.o)
-                0x00000000081001e0                _vtimers
- .bss           0x0000000008100328       0x3c /usr/share/fxsdk/libgint.a(timer_hardware_timers.c.o)
-                0x0000000008100328                _htimers
- .bss           0x0000000008100364        0x0 /usr/share/fxsdk/libgint.a(bopti_bopti_internals.c.o)
- .bss           0x0000000008100364       0x98 /usr/share/fxsdk/libgint.a(core_init_quit.c.o)
- .bss           0x00000000081003fc        0x0 /usr/share/fxsdk/libgint.a(core_gint.c.o)
- .bss           0x00000000081003fc        0x0 /usr/share/fxsdk/libgint.a(core_gint_sh7305.c.o)
- .bss           0x00000000081003fc        0x0 /usr/share/fxsdk/libgint.a(core_syscalls.s.o)
- .bss           0x00000000081003fc        0x0 /usr/share/fxsdk/libgint.a(core_gint_vbr.s.o)
- .bss           0x00000000081003fc        0x0 /usr/share/fxsdk/libgint.a(events_event_get.c.o)
- .bss           0x00000000081003fc        0x8 /usr/share/fxsdk/libgint.a(events_event_push.c.o)
-                0x00000000081003fc                _queue_size
-                0x0000000008100400                _queue_start
- .bss           0x0000000008100404       0x24 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .bss           0x00000000081000d4       0x24 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .bss           0x00000000081000f8        0x0 /usr/share/fxsdk/libgint.a(gray_gclear.c.o)
+ .bss           0x00000000081000f8        0x0 /usr/share/fxsdk/libgint.a(gray_grect.c.o)
+ .bss           0x00000000081000f8       0x84 /usr/share/fxsdk/libgint.a(init_crt0.c.o)
+ .bss           0x000000000810017c        0xe /usr/share/fxsdk/libgint.a(init_util.c.o)
+ .bss           0x000000000810018a        0x0 /usr/share/fxsdk/libgint.a(keyboard_getkey.c.o)
+ .bss           0x000000000810018a        0x0 /usr/share/fxsdk/libgint.a(keyboard_key_type.c.o)
+ *fill*         0x000000000810018a        0x2 
+ .bss           0x000000000810018c       0x1e /usr/share/fxsdk/libgint.a(keyboard_keyboard_core.c.o)
+                0x000000000810018c                _vtimer
+                0x0000000008100190                _last_time
+                0x0000000008100194                _last_repeats
+                0x0000000008100198                _last_key
+                0x000000000810019c                _interrupt_flag
+                0x00000000081001a0                _keyboard_state
+ .bss           0x00000000081001aa        0x0 /usr/share/fxsdk/libgint.a(mmu_pseudoTLBInit.c.o)
+ *fill*         0x00000000081001aa        0x2 
+ .bss           0x00000000081001ac       0x58 /usr/share/fxsdk/libgint.a(rtc_rtc_callback.c.o)
+                0x00000000081001ac                _cb_array
+ .bss           0x0000000008100204        0x0 /usr/share/fxsdk/libgint.a(screen_screen_display.c.o)
+ .bss           0x0000000008100204        0x0 /usr/share/fxsdk/libgint.a(screen_screen_backlight.c.o)
+ .bss           0x0000000008100204        0x0 /usr/share/fxsdk/libgint.a(tales_dprint.c.o)
+ .bss           0x0000000008100204        0x0 /usr/share/fxsdk/libgint.a(tales_dtext.c.o)
+ .bss           0x0000000008100204        0x0 /usr/share/fxsdk/libgint.a(tales_tales_configuration.c.o)
+ .bss           0x0000000008100204        0x0 /usr/share/fxsdk/libgint.a(timer_common_api.c.o)
+ .bss           0x0000000008100204      0x148 /usr/share/fxsdk/libgint.a(timer_virtual_timers.c.o)
+                0x0000000008100204                _vtimers
+ .bss           0x000000000810034c       0x3c /usr/share/fxsdk/libgint.a(timer_hardware_timers.c.o)
+                0x000000000810034c                _htimers
+ .bss           0x0000000008100388        0x0 /usr/share/fxsdk/libgint.a(bopti_bopti_internals.c.o)
+ .bss           0x0000000008100388       0x98 /usr/share/fxsdk/libgint.a(core_init_quit.c.o)
+ .bss           0x0000000008100420        0x0 /usr/share/fxsdk/libgint.a(core_gint.c.o)
+ .bss           0x0000000008100420        0x0 /usr/share/fxsdk/libgint.a(core_gint_sh7305.c.o)
+ .bss           0x0000000008100420        0x0 /usr/share/fxsdk/libgint.a(core_syscalls.s.o)
+ .bss           0x0000000008100420        0x0 /usr/share/fxsdk/libgint.a(core_gint_vbr.s.o)
+ .bss           0x0000000008100420        0x0 /usr/share/fxsdk/libgint.a(events_event_get.c.o)
+ .bss           0x0000000008100420        0x8 /usr/share/fxsdk/libgint.a(events_event_push.c.o)
+                0x0000000008100420                _queue_size
+                0x0000000008100424                _queue_start
  .bss           0x0000000008100428        0x0 /usr/share/fxsdk/libgint.a(keyboard_key_char.c.o)
  .bss           0x0000000008100428        0x0 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7305.c.o)
  .bss           0x0000000008100428        0x0 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7705.c.o)
@@ -892,7 +905,7 @@ LOAD /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a
  COMMON         0x00000000081007c0      0x100 /usr/share/fxsdk/libc.a(stdio_stdio_format.c.o)
                 0x00000000081007c0                ___stdio_buffer
 
-.data           0x00000000081008c0      0x2f0 load address 0x000000000030e64c
+.data           0x00000000081008c0      0x2f0 load address 0x000000000030f0a4
                 0x00000000081008c0                _bdata = ABSOLUTE (.)
                 0x00000000000002f0                _sdata = ABSOLUTE (SIZEOF (.data))
  *(.data)
@@ -924,6 +937,9 @@ LOAD /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a
  .data          0x0000000008100904        0x0 /usr/share/fxsdk/libgint.a(display_dpixel.c.o)
  .data          0x0000000008100904        0x0 /usr/share/fxsdk/libgint.a(display_dupdate.c.o)
  .data          0x0000000008100904        0x0 /usr/share/fxsdk/libgint.a(display_dline.c.o)
+ .data          0x0000000008100904        0x0 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .data          0x0000000008100904        0x0 /usr/share/fxsdk/libgint.a(gray_gclear.c.o)
+ .data          0x0000000008100904        0x0 /usr/share/fxsdk/libgint.a(gray_grect.c.o)
  .data          0x0000000008100904        0x4 /usr/share/fxsdk/libgint.a(init_crt0.c.o)
  .data          0x0000000008100908        0x0 /usr/share/fxsdk/libgint.a(init_util.c.o)
  .data          0x0000000008100908        0x0 /usr/share/fxsdk/libgint.a(keyboard_getkey.c.o)
@@ -950,7 +966,6 @@ LOAD /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a
  .data          0x00000000081009ec        0x0 /usr/share/fxsdk/libgint.a(core_gint_vbr.s.o)
  .data          0x00000000081009ec        0x0 /usr/share/fxsdk/libgint.a(events_event_get.c.o)
  .data          0x00000000081009ec        0x0 /usr/share/fxsdk/libgint.a(events_event_push.c.o)
- .data          0x00000000081009ec        0x0 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
  .data          0x00000000081009ec        0x0 /usr/share/fxsdk/libgint.a(keyboard_key_char.c.o)
  .data          0x00000000081009ec        0x0 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7305.c.o)
  .data          0x00000000081009ec        0x0 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7705.c.o)
@@ -1000,14 +1015,14 @@ LOAD /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a
                 0x0000000008100b4c                _MCSpt
                 0x0000000008100bb0                . = ALIGN (0x4)
 
-.cc             0x0000000008100bb0       0x84 load address 0x000000000030e93c
+.cc             0x0000000008100bb0       0x84 load address 0x000000000030f394
  *(.eh_frame)
  .eh_frame      0x0000000008100bb0       0x84 /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a(_udivdi3.o)
  *(.jcr)
                 0x0000000008100c34                . = ALIGN (0x4)
-                0x000000000030e9c0                _gint_data = ((_romdata + SIZEOF (.data)) + SIZEOF (.cc))
+                0x000000000030f418                _gint_data = ((_romdata + SIZEOF (.data)) + SIZEOF (.cc))
 
-.gint           0x000000008800d000      0x6e0 load address 0x000000000030e9c0
+.gint           0x000000008800d000      0x6e0 load address 0x000000000030f418
                 0x000000008800d000                . = ALIGN (0x100)
                 0x000000008800d000                _gint_vbr = .
                 0x000000008800d000                _bgint = ABSOLUTE (.)
@@ -1029,7 +1044,7 @@ LOAD /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a
                 0x000000008800d6e0                . = ALIGN (0x4)
                 0x000000008800d6e0                _egint = ABSOLUTE (.)
 
-.rela.dyn       0x000000008800d6e0        0x0 load address 0x000000000030f0a0
+.rela.dyn       0x000000008800d6e0        0x0 load address 0x000000000030faf8
  .rela.text     0x000000008800d6e0        0x0 build.fx/renderer.o
  .relaP         0x000000008800d6e0        0x0 build.fx/renderer.o
  .rela.pretext.entry
@@ -1041,7 +1056,7 @@ LOAD /home/jberben/Casio/sh3eb-elf-2.32-8.3.0/lib/gcc/sh3eb-elf/8.3.0/libgcc.a
  .rela.gint.int
                 0x000000008800d6e0        0x0 build.fx/renderer.o
 
-.gint_bss       0x000000008800d6e0      0x410 load address 0x000000000030f0a0
+.gint_bss       0x000000008800d6e0      0x410 load address 0x000000000030faf8
                 0x000000008800d6e0                _bgbss = ABSOLUTE (.)
  *(.gint.bss)
  .gint.bss      0x000000008800d6e0        0x4 /usr/share/fxsdk/libgint.a(core_mpu.c.o)
@@ -1083,6 +1098,9 @@ OUTPUT(build.fx/rendex.elf elf32-sh)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(display_dpixel.c.o)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(display_dupdate.c.o)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(display_dline.c.o)
+ .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
+ .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(gray_gclear.c.o)
+ .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(gray_grect.c.o)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(init_crt0.c.o)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(init_util.c.o)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(keyboard_getkey.c.o)
@@ -1104,7 +1122,6 @@ OUTPUT(build.fx/rendex.elf elf32-sh)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(core_gint_sh7305.c.o)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(events_event_get.c.o)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(events_event_push.c.o)
- .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(gray_gray_engine.c.o)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(keyboard_key_char.c.o)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7305.c.o)
  .comment       0x0000000000000011       0x12 /usr/share/fxsdk/libgint.a(keyboard_keyboard_sh7705.c.o)

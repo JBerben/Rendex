@@ -39,16 +39,16 @@ static matrix4x4* yRotationMatrix;
 
 color_t get_colour(double lum) {
 		short bg_col, fg_col;
-		int pixel_bw = (int)(13.0*lum);
+		int pixel_bw = (int)(2*lum);
 		switch (pixel_bw)
 		{
 		case 0: bg_col = color_black; fg_col = color_black; break;
 
 		case 1: bg_col = color_black; fg_col = color_dark; break;
 
-		case 2: bg_col = color_dark; fg_col = color_lighten; break;
+		case 3: bg_col = color_light; fg_col = color_light; break;
 
-		case 3: bg_col = color_lighten; fg_col = color_light; break;
+        case 4: bg_col = color_white; fg_col = color_white; break;
 
 		default:
 			bg_col = color_black; fg_col = color_black;
@@ -291,6 +291,13 @@ void renderMesh (mesh* mesh, int rotnum)
             normal.z * (triTranslated->vertex[0].z - camera.z) < 0.0)
         {
          
+            /**
+             * BARYCENTRIC Triangle filling algorithm. Will improve
+             * to a faster algorithm in the future. This is mainly
+             * to get a better grip on how to work the gray engine
+             * with triangle rasterisation.
+             */
+
             /* Illumination. */
             vector3 light_direction = (vector3) {0.0, 0.0, -1.0};
             double light_length = vector3_length(light_direction);
@@ -298,9 +305,8 @@ void renderMesh (mesh* mesh, int rotnum)
 
             // How similar is normal to light direction
             double dp = normal.x * light_direction.x + normal.y * light_direction.y + normal.z * light_direction.z;
+            //color_t c = get_colour(dp);
             color_t c = color_black;
-            
-
 
             *triProjected = *triTranslated;
             triProjected->color = c;
@@ -327,8 +333,40 @@ void renderMesh (mesh* mesh, int rotnum)
             triProjected->vertex[2].x *= 0.5 * (double) WIDTH;
             triProjected->vertex[2].y *= 0.5 * (double) HEIGHT;
 
+             /**
+         * START OF TRIANGLE FILLING.
+         */
+        int maxX = Math.max(triProjected->vertex[0].x, Math.max(triProjected->vertex[1].x, triProjected->vertex[2].x));
+        int minX = Math.min(triProjected->vertex[0].x, Math.min(triProjected->vertex[1].x, triProjected->vertex[2].x));
+        int maxY = Math.max(triProjected->vertex[0].y, Math.max(triProjected->vertex[1].y, triProjected->vertex[2].y));
+        int minY = Math.min(triProjected->vertex[0].y, Math.min(triProjected->vertex[1].y, triProjected->vertex[2].y));
+
+        /* spanning vectors of edge (v1,v2) and (v1,v3) */
+        vector2 vs1 = { edge1.x, edge1.y };
+        vector2 vs2 = { edge2.x, edge2.y };
+
+        for (int x = minX; x <= maxX; x++) {   
+            for (int y = minY; y <= maxY; y++) {
+                vector2 q = { x - triProjected->vertex[0].x, y - triProjected->vertex[0].y };
+
+                float s = (float)crossProduct(q, vs2) / crossProduct(vs1, vs2);
+                float t = (float)crossProduct(vs1, q) / crossProduct(vs1, vs2);
+
+                if ( (s >= 0) && (t >= 0) && (s + t <= 1)) { 
+                    /* inside triangle */
+                    dpixel(x, y, color_black);
+                }
+            }
+        }
+        /**
+         * END OF TRIANGLE FILLING.
+         */
+
         }
         //Draw the result on screen
         drawTriangle(triProjected);
+
+
+        
     }
 }

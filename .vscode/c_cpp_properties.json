@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/jberben/Casio/sh3eb-elf-2.32-8.3.0/bin/**",
+                "/usr/share/fxsdk/**",
+                "/home/jberben/Casio/sh3eb-elf-2.32-8.3.0/sh3eb-elf/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

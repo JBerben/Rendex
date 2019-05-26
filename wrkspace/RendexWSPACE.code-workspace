@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "/home/jberben/Casio/Projects/Rendex"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"math.h": "c",
+			"_ansi.h": "c",
+			"stdio.h": "c",
+			"mathcalls.h": "c",
+			"stdlib.h": "c",
+			"mathutils.h": "c",
+			"keyboard.h": "c",
+			"display.h": "c",
+			"definitions.h": "c",
+			"string.h": "c",
+			"bfile.h": "c",
+			"fxlib.h": "c"
+		}
+	}
+}

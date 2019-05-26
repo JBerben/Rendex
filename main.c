@@ -285,6 +285,8 @@ void loading_bar() {
 
 /**
  * Learning how to control Gint's gray engine better...
+ * Aim: To seperate sections of the VRAM to allow shading
+ * for 3D rendering.
  */
 void render_misc(bool initialize) {
     

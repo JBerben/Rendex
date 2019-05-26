@@ -88,57 +88,60 @@ void updateGame ()
     keyboard_setRepeatRate(125, 50);
 
     dclear();
+
+    gray_start();
     renderMesh(cube, 2);
-    dupdate();
+    gclear();
 
     while(event != KEY_EXIT) {
-        dclear();
 
         event = getkey_opt(getkey_repeat_all_keys, 200);        
-
+        gclear();
         switch(event) {
             case KEY_EXIT:
-            dclear();
+            gclear();
             break;
 
             case KEY_RIGHT:
             thetra_x += 0.08;
             renderMesh(cube, 1);
-            dupdate();
+            gupdate();
             break;
 
             case KEY_LEFT:
             thetra_x -= 0.08;
             renderMesh(cube, 1);
-            dupdate();
+            gupdate();
             break;
 
             case KEY_UP:
             thetra_y += 0.08;
             renderMesh(cube, 2);
-            dupdate();
+            gupdate();
             break;
 
             case KEY_DOWN:
             thetra_y -= 0.08;
             renderMesh(cube, 2);
-            dupdate();
+            gupdate();
             break;
 
             case KEY_9:
             thetra_z += 0.08;
             renderMesh(cube, 3);
-            dupdate();
+            gupdate();
             break;
 
             case KEY_1:
             thetra_z -= 0.08;
             renderMesh(cube, 3);
-            dupdate();
+            gupdate();
             break;
         }
         
     }
+
+    gray_stop();
 
 }
 

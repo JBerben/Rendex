@@ -175,7 +175,7 @@ void load_file(bool initialize) {
     /**
      * File I/O variables.
      */
-    char data[] = {'I', ' ', 'L', 'o', 'v', 'e', ' ', 'Y', 'o', 'u', '!', 0};
+    char data[] = {'I', ' ', 'L', 'o', 'v', 'e', ' ', 'G', 'i', 'n', 't', 0};
     const void* data_buffer = data;
 
     char read_data[12];

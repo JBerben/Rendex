@@ -16,8 +16,21 @@ sudo p7 send "path to rendex.g1a"
 FA-124 is GUI based application, so just click and dragging will pull you through here :)
 ```
 
-## Screenshots
+## Dependencies
+#### GINT : Alternative library and kernel for CASIO OS
+[Gint](https://gitea.planet-casio.com/Lephenixnoir/gint)
+#### NEWLIB : Alternative libc for CASIO
+[New-lib](https://git.planet-casio.com/Memallox/libc)
+#### FXLIB : Standard Casio Library paired with in-house SDK. Linked is a modded version of it.
+[fxlib](http://revolution-fx.sourceforge.net/)
 
+## COMPILATION
+Compilation was achieved with a custom GCC Toolchain.
+sh3eb-elf-gcc to be exact. Will add more info later. For now, If you run arch, or have access to a package manager such as yaourt, yay, etc... It should be downloadable:
+```bash
+yay -Ss sh3eb-elf-gcc
+yay -S "result that was found to be close enough to above search"
+```
 
 
 ## License

@@ -63,12 +63,7 @@ void process_scan_line(int y, vector2 va, vector2 vb, vector2 vc, vector2 vd, co
     double ex = interpolate(vc.x, vd.x, g2);
 
     for (int x = (int)sx; x < (int)ex; x++) {
-        if (color == color_black) {
-            dpixel(x, y, color_black);
-        } else {
             gpixel(x, y, color);
-        }
-        
     }
 }
 
